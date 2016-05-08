@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+var customer = { "Customer": {"email": "111@111.com", "password": "12345678", "telephone": "613-123-1234" }};
+$(document).ready(function(){
+    $("button").click(function(){
+    	var request = $.ajax({
+		    type: "POST",
+		    url: "http://45.55.164.174/eat/customers/add.json",
+		    data: JSON.stringify(customer),
+		    contentType: "application/json; charset=utf-8",
+		    dataType: "json"
+		});
+
+		request.done(function( msg ) {
+		  $("#div1").html(JSON.stringify(msg));
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " +  JSON.stringify(jqXHR));
+		});
+    });
+});
+</script>
+</head>
+<body>
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+
+</body>
+</html>
